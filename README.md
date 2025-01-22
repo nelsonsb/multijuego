@@ -1,7 +1,6 @@
-# Arquitectura para un Juego Multijugador en Línea en Tiempo Real
+# Arquitectura para un Juego Multijugador en Línea
 
-
-
+## Tiempo Real
 
 ## Stack Tecnologico
 
@@ -34,6 +33,13 @@
 * Manejo de JWT para las autenticaciones.
 
 ### Diagrama
+
+No es un diagrama totalmente exacto de la solución, pero muestra algunos servicios que se pueden implementar para la aplicación.
+
+Adicionalmente se pueden definir diferentes 'Availability Zones' para la redundancia. Se pueden usar diferentes regiones y la escalabilidad también es puede manejar en diferentes regiones y zonas.
+
+
+
 ![Diagrama Arquitectura - Multijuego en línea](https://github.com/nelsonsb/multijuego/blob/main/multijuego.png)
 
 
