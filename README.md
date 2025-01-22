@@ -68,3 +68,25 @@ Solo se mencionarán algunos de manera muy general
     - Todo el tráfico entre componentes está cifrado con TLS.
     - Los datos sensibles se cifran antes de ser almacenados.
 
+
+
+## Sistema de caché distribuido en Python usando Redis
+
+Se debe instalar Redis y la biblioteca de cliente para Python
+
+```
+pip install redis
+```
+
+Revisar el archivo [punto2.py](https://github.com/nelsonsb/multijuego/blob/main/punto2.py).
+
+### Explicación:
+
+Almacenar y recuperar datos: Utilizamos el método set para almacenar datos con una clave y opcionalmente un tiempo de vida (TTL). 
+
+El método get se usa para recuperar datos por clave.
+
+Manejo de consistencia distribuida: Redis maneja automáticamente la consistencia distribuida.
+
+Invalidación y caducidad: Los métodos invalidate y expire permiten eliminar entradas de la caché o establecer un tiempo de expiración para los datos.
+
