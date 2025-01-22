@@ -1,8 +1,6 @@
 # Arquitectura para un Juego Multijugador en Línea
 
-## Tiempo Real
-
-## Stack Tecnologico
+## Stack Tecnológico
 
 ### Infraestructura
 * Podemos alojar nuestra aplicación en contenedores. Para esto usamos ECS o Kubernets, de esta forma podemos crear escalabilidad de los contenedores.
@@ -38,9 +36,35 @@ No es un diagrama totalmente exacto de la solución, pero muestra algunos servic
 
 Adicionalmente se pueden definir diferentes 'Availability Zones' para la redundancia. Se pueden usar diferentes regiones y la escalabilidad también es puede manejar en diferentes regiones y zonas.
 
-
+Obviamente también falta incluir algunos otros servicios proporcionados por AWS y que se mencionan en el listado.
 
 ![Diagrama Arquitectura - Multijuego en línea](https://github.com/nelsonsb/multijuego/blob/main/multijuego.png)
 
 
+## Listado de Flujos de Datos
+
+Solo se mencionarán algunos de manera muy general
+
+- Autenticación del jugador:
+    - El cliente envía las credenciales al API Gateway.
+    - El API Gateway redirige la solicitud al Servicio de Autenticación.
+    - Si es válido, se genera un token JWT y se envía al cliente.
+    - En este caso usamos Cognito.
+    - Se visualiza en la parte inferior del gráfico
+- Inicio de una partida:
+    - El cliente solicita una nueva partida al API Gateway.
+    - La solicitud se enruta al Servidor de Juegos correspondiente.
+    - El Servidor de Juegos registra la partida en el Servicio de Persistencia.
+    - Se observa en la parte superior del gráfico
+    - Podemos usar contenedores o usar el servicio EC2 para máquinas virtuales.
+- Actualización en tiempo real durante el juego:
+    - El Servidor de Juegos actualiza el estado del juego y utiliza Redis para almacenar datos temporales.
+    - Si es necesario, los eventos clave se envían al Servicio de Persistencia a través de la Cola de Mensajes.
+- Finalización de una partida:
+    - El Servidor de Juegos guarda el resultado en el Servicio de Persistencia.
+    - El Servicio de Persistencia actualiza la Base de Datos Distribuida.
+    - En la gráfica se muestra la base de datos usando RDS
+- Protección de datos:
+    - Todo el tráfico entre componentes está cifrado con TLS.
+    - Los datos sensibles se cifran antes de ser almacenados.
 
