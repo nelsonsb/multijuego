@@ -34,7 +34,7 @@
 * Manejo de JWT para las autenticaciones.
 
 ### Diagrama
-![Diagrama Arquitectura - Multijuego en línea](https://github.com/nelsonsb/multijuego/multijuego.png)
+![Diagrama Arquitectura - Multijuego en línea](https://github.com/nelsonsb/multijuego/blob/main/multijuego.png)
 
 
 
